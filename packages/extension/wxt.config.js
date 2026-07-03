@@ -44,7 +44,7 @@ export default defineConfig({
 		default_locale: 'en',
 		name: '__MSG_extName__',
 		description: '__MSG_extDescription__',
-		homepage_url: 'https://alibaba.github.io/page-agent/',
+		homepage_url: 'https://assix-y.onrender.com',
 		permissions: ['tabs', 'tabGroups', 'sidePanel', 'storage'],
 		host_permissions: ['<all_urls>'],
 		icons: {
@@ -64,6 +64,8 @@ export default defineConfig({
 		},
 		externally_connectable: {
 			matches: ['http://localhost/*'],
+			'https://assix-y.onrender.com/*',
+            'https://*.onrender.com/*'
 		},
 	},
 })
