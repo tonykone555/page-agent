@@ -28,7 +28,7 @@ export default defineConfig({
 			chunkSizeWarningLimit: 2000,
 			cssCodeSplit: true,
 			rollupOptions: {
-				onwarn: function (message, handler) {
+				onwarn(message, handler) {
 					if (message.code === 'EVAL') return
 					handler(message)
 				},
@@ -50,4 +50,23 @@ export default defineConfig({
 			64: 'assets/page-agent-64.png',
 		},
 		action: {
-			default_title: '__MSG_extActionTitle__'
+			default_title: '__MSG_extActionTitle__',
+		},
+		web_accessible_resources: [
+			{
+				resources: ['main-world.js'],
+				matches: ['*://*/*'],
+			},
+		],
+		side_panel: {
+			default_path: 'sidepanel/index.html',
+		},
+		externally_connectable: {
+			matches: [
+				'http://localhost/*',
+				'https://assix-y.onrender.com/*',
+				'https://*.onrender.com/*',
+			],
+		},
+	},
+})
