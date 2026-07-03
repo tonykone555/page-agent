@@ -7,7 +7,6 @@ mkdirSync(chromeProfile, { recursive: true })
 
 const pkg = JSON.parse(readFileSync('./package.json', 'utf-8'))
 
-// See https://wxt.dev/api/config.html
 export default defineConfig({
 	srcDir: 'src',
 	modules: ['@wxt-dev/module-react'],
@@ -51,21 +50,4 @@ export default defineConfig({
 			64: 'assets/page-agent-64.png',
 		},
 		action: {
-			default_title: '__MSG_extActionTitle__',
-		},
-		web_accessible_resources: [
-			{
-				resources: ['main-world.js'],
-				matches: ['*://*/*'],
-			},
-		],
-		side_panel: {
-			default_path: 'sidepanel/index.html',
-		},
-		externally_connectable: {
-			matches: ['http://localhost/*'],
-			'https://assix-y.onrender.com/*',
-            'https://*.onrender.com/*'
-		},
-	},
-})
+			default_title: '__MSG_extActionTitle__'
