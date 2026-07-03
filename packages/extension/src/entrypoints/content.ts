@@ -163,34 +163,36 @@ async function exposeAgentToPage() {
 	})
 }
 // Assix Browser Agent bridge
-window.addEventListener('message', async (event) => {
-  if (event.origin !== window.location.origin) return;
-  if (event.data?.source !== 'assix-dashboard') return;
-  
+window.addEventListener('message', (event) => {
+  if (event.origin !== window.location.origin) return
+  if (event.data?.source !== 'assix-dashboard') return
+
   if (event.data?.type === 'ping') {
     window.postMessage({ 
       source: 'assix-agent', 
       type: 'pong' 
-    }, '*');
-    return;
+    }, '*')
+    return
   }
-  
-  if (event.data?.instruction) {
-    try {
-      const result = await agent.execute(event.data.instruction);
-      window.postMessage({
-        source: 'assix-agent',
-        taskId: event.data.taskId,
-        result,
-        status: 'complete'
-      }, '*');
-    } catch (err: any) {
-      window.postMessage({
-        source: 'assix-agent',
-        taskId: event.data.taskId,
-        error: err.message,
-        status: 'failed'
-      }, '*');
-    }
+
+  if (event.data?.instruction && multiPageAgent) {
+    const taskId = event.data.taskId
+    multiPageAgent.execute(event.data.instruction)
+      .then((result) => {
+        window.postMessage({
+          source: 'assix-agent',
+          taskId,
+          result,
+          status: 'complete'
+        }, '*')
+      })
+      .catch((err: Error) => {
+        window.postMessage({
+          source: 'assix-agent',
+          taskId,
+          error: err.message,
+          status: 'failed'
+        }, '*')
+      })
   }
-});
+})
