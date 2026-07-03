@@ -1,9 +1,13 @@
 import type { LLMConfig } from '@page-agent/llms'
 
-// Demo LLM for testing
-export const DEMO_MODEL = 'qwen3.5-plus'
-export const DEMO_BASE_URL = 'https://page-ag-testing-ohftxirgbn.cn-shanghai.fcapp.run'
-// export const DEMO_API_KEY = 'NA'
+// Assix Browser Agent — default model
+export const DEMO_MODEL = 'llama-3.3-70b-versatile'
+export const DEMO_BASE_URL = 'https://api.groq.com/openai/v1'
+
+export const DEMO_CONFIG: LLMConfig = {
+	baseURL: DEMO_BASE_URL,
+	model: DEMO_MODEL,
+}
 
 export const DEMO_CONFIG: LLMConfig = {
 	baseURL: DEMO_BASE_URL,
