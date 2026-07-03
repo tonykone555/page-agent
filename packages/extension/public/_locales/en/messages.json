@@ -1,11 +1,11 @@
 {
     "extName": {
-        "message": "Page Agent Ext"
+        "message": "Assix Browser Agent"
     },
     "extDescription": {
-        "message": "AI-powered browser automation assistant. Control web pages with natural language."
+        "message": "AI browser automation powered by Assix. Control any website with natural language."
     },
     "extActionTitle": {
-        "message": "Open Page Agent"
+        "message": "Open Assix Agent"
     }
 }
